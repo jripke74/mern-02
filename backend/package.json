@@ -1,19 +1,11 @@
 {
-<<<<<<< HEAD
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2"
-=======
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "dependencies": {
     "apple-maps-server-sdk": "^1.1.2",
     "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
     "http-errors": "^2.0.0",
+    "mongoose": "^8.0.2",
     "uuid": "^9.0.1"
   },
   "scripts": {
@@ -24,6 +16,5 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.2"
->>>>>>> build-backend
   }
 }

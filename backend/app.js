@@ -1,9 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const placesRoutes = require("./routes/places-routes");
 const usersRoutes = require("./routes/users-routes");
 const HttpError = require("./models/http-error");
+const { mongoDbUsername, mongoDbPassword } = require("./secrets/authKeys");
 
 const app = express();
 
@@ -25,4 +27,13 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || "An unkown error occurred!" });
 });
 
-app.listen(5003);
+mongoose
+  .connect(
+    `mongodb+srv://${mongoDbUsername}:${mongoDbPassword}@cluster0.mxuwfw1.mongodb.net/mern?retryWrites=true&w=majority`
+  )
+  .then(() => {
+    app.listen(5003);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
