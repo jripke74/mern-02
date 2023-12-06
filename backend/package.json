@@ -6,6 +6,7 @@
     "express-validator": "^7.0.1",
     "http-errors": "^2.0.0",
     "mongoose": "^8.0.2",
+    "mongoose-unique-validator": "^4.0.0",
     "uuid": "^9.0.1"
   },
   "scripts": {
