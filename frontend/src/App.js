@@ -42,9 +42,6 @@ const App = () => {
         <Route path="/places/:placeId" exact>
           <UpdatePlace />
         </Route>
-        <Router path="/auth/">
-          <Auth />
-        </Router>
         <Redirect to="/" />
       </Switch>
     );
