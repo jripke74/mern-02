@@ -22,15 +22,21 @@ export const useHttpClient = () => {
 
         const responseData = await response.json();
 
+        activeHttpRequests.current = activeHttpRequests.current.filter(
+          (reqCtrl) => reqCtrl !== httpAbortCtrll
+        );
+
         if (!response.ok) {
           throw new Error(responseData.message);
         }
 
+        setIsloading(false);
         return responseData;
       } catch (err) {
         setError(err.message);
+        setIsloading(false);
+        throw err;
       }
-      setIsloading(false);
     },
     []
   );
