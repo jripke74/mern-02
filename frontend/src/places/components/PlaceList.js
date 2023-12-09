@@ -22,7 +22,7 @@ const PlaceList = (props) => {
       {props.items.map((place) => (
         <PlaceItem
           key={place._id}
-          id={place.id}
+          id={place._id}
           image={place.image}
           title={place.title}
           description={place.description}
