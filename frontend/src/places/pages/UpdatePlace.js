@@ -56,6 +56,7 @@ const UpdatePlace = () => {
           },
           true
         );
+        
       } catch (err) {}
     };
     fetchPlace();
