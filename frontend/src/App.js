@@ -57,7 +57,7 @@ const App = () => {
         <Route path="/:userId/places" exact>
           <UserPlaces />
         </Route>
-        <Router path="/auth/">
+        <Router path="/auth">
           <Auth />
         </Router>
         <Redirect to="/auth" />

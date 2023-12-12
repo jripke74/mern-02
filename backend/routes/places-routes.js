@@ -1,8 +1,6 @@
 const express = require("express");
 const { check } = require("express-validator");
 
-const HttpError = require("../models/http-error");
-
 const placesControllers = require("../controllers/places-controllers");
 const fileUpload = require("../middleware/file-upload");
 

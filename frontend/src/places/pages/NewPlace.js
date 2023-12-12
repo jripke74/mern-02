@@ -9,7 +9,7 @@ import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
-} from "../../shared/components/util/validators";
+} from "../../shared/util/validators";
 import { useForm } from "../../shared/hooks/form-hook";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
@@ -33,7 +33,7 @@ const NewPlace = () => {
         isValid: false,
       },
       image: {
-        value: "",
+        value: null,
         isValid: false,
       },
     },
@@ -46,11 +46,11 @@ const NewPlace = () => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("title", formData.inputs.title.value);
-      formData.append("description", formData.inputs.description.value);
-      formData.append("address", formData.inputs.address.value);
+      formData.append("title", formState.inputs.title.value);
+      formData.append("description", formState.inputs.description.value);
+      formData.append("address", formState.inputs.address.value);
       formData.append("creator", auth.userId);
-      formData.append("image", formData.inputs.image.value);
+      formData.append("image", formState.inputs.image.value);
       await sendRequest("http://localhost:5003/api/places", "POST", formData);
       history.push("/");
     } catch (err) {}

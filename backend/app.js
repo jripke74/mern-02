@@ -11,7 +11,6 @@ const HttpError = require("./models/http-error");
 const { mongoDbUsername, mongoDbPassword } = require("./secrets/authKeys");
 
 const app = express();
-
 app.use(bodyParser.json());
 
 app.use("/uploads/images", express.static(path.join("uploads", "images")));
@@ -23,6 +22,7 @@ app.use((req, res, next) => {
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
   res.setHeader("Access-Control-Allow-Methods", "Get, POST, PATCH, DELETE");
+  
   next();
 });
 

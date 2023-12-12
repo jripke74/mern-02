@@ -36,9 +36,10 @@ const getPlaceById = async (req, res, next) => {
 const getPlacesByUserId = async (req, res, next) => {
   const userId = req.params.uid;
 
-  let places;
+  // let places;
+  let userWithPlaces;
   try {
-    places = await Place.find({ creator: userId });
+    userWithPlaces = await User.findById(userId).populate("places");
   } catch (err) {
     const error = new HttpError(
       "Fetching places failed, please try again later.",
@@ -47,13 +48,18 @@ const getPlacesByUserId = async (req, res, next) => {
     return next(error);
   }
 
-  if (!places || places.length === 0) {
+  // if (!places || places.length === 0) {
+  if (!userWithPlaces || userWithPlaces.places.length === 0) {
     return next(
       new HttpError("Could not find a place for the provided id.", 404)
     );
   }
 
-  res.json({ places: places.map((place) => place.toObject({ getter: true })) });
+  res.json({
+    places: userWithPlaces.places.map((place) =>
+      place.toObject({ getters: true })
+    ),
+  });
 };
 
 const createPlace = async (req, res, next) => {
@@ -83,7 +89,6 @@ const createPlace = async (req, res, next) => {
   });
 
   let user;
-
   try {
     user = await User.findById(creator);
   } catch (err) {
@@ -98,6 +103,8 @@ const createPlace = async (req, res, next) => {
     const error = new HttpError("Could not find user for provided id", 404);
     return next(error);
   }
+
+  console.log(user);
 
   try {
     const sess = await mongoose.startSession();
@@ -192,7 +199,7 @@ const deletePlace = async (req, res, next) => {
   }
 
   fs.unlink((imagePath, err) => {
-    console.log(err);
+    console.log("yeah this", err);
   });
 
   res.status(200).json({ message: "Deleted place." });

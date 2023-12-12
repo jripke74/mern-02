@@ -21,7 +21,7 @@ const ImageUpload = (props) => {
     fileReader.readAsDataURL(file);
   }, [file]);
 
-  const pickHandler = (event) => {
+  const pickedHandler = (event) => {
     let pickedFile;
     let fileIsValid = isValid;
     if (event.target.files && event.target.files.length === 1) {
@@ -43,12 +43,12 @@ const ImageUpload = (props) => {
   return (
     <div className="form-control">
       <input
-        id={props._id}
+        id={props.id}
         ref={filePickerRef}
         style={{ display: "none" }}
         type="file"
         accept=".jpg,.png,.jpeg"
-        onChange={pickHandler}
+        onChange={pickedHandler}
       />
       <div className={`image-upload ${props.center && "center"}`}>
         <div className="image-upload__preview">
