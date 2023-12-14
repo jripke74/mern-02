@@ -4,7 +4,7 @@ const HttpError = require("../models/http-error");
 const { secretKey } = require("../secrets/authKeys");
 
 module.exports = (req, res, next) => {
-  if (req.method === "OPTION") {
+  if (req.method === "OPTIONS") {
     return next();
   }
   try {
