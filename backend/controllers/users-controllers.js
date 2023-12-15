@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const HttpError = require("../models/http-error");
 const User = require("../models/user");
 const { secretKey } = require("../secrets/authKeys");
-
 const getUsers = async (req, res, next) => {
   let users;
   try {
@@ -80,7 +79,7 @@ const signup = async (req, res, next) => {
 
   let token;
   try {
-    const token = await jwt.sign(
+    token = jwt.sign(
       { userId: createdUser.id, email: createdUser.email },
       secretKey,
       { expiresIn: "1h" }
@@ -142,7 +141,7 @@ const login = async (req, res, next) => {
 
   let token;
   try {
-    const token = await jwt.sign(
+    token = jwt.sign(
       { userId: existingUser.id, email: existingUser.email },
       secretKey,
       { expiresIn: "1h" }
