@@ -8,7 +8,6 @@ const mongoose = require("mongoose");
 const placesRoutes = require("./routes/places-routes");
 const usersRoutes = require("./routes/users-routes");
 const HttpError = require("./models/http-error");
-const { mongoDbUsername, mongoDbPassword } = require("./secrets/authKeys");
 
 const app = express();
 app.use(bodyParser.json());
@@ -49,7 +48,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    `mongodb+srv://${process.env.DB_USER}:${mongoDbPassword}@cluster0.mxuwfw1.mongodb.net/mern?retryWrites=true&w=majority`
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.mxuwfw1.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
   )
   .then(() => {
     app.listen(5003);

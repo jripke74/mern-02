@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 
 const HttpError = require("../models/http-error");
 const User = require("../models/user");
-const { secretKey } = require("../secrets/authKeys");
 const getUsers = async (req, res, next) => {
   let users;
   try {
@@ -81,7 +80,7 @@ const signup = async (req, res, next) => {
   try {
     token = jwt.sign(
       { userId: createdUser.id, email: createdUser.email },
-      secretKey,
+      process.env.JWT_KEY,
       { expiresIn: "1h" }
     );
   } catch (err) {
@@ -143,7 +142,7 @@ const login = async (req, res, next) => {
   try {
     token = jwt.sign(
       { userId: existingUser.id, email: existingUser.email },
-      secretKey,
+      process.env.JWT_KEY,
       { expiresIn: "1h" }
     );
   } catch (err) {

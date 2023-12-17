@@ -4,7 +4,7 @@ const HttpError = require("../models/http-error");
 const { appleMapKitKey } = require("../secrets/authKeys");
 
 const appleMaps = new AppleMaps({
-  authorizationToken: appleMapKitKey,
+  authorizationToken: process.env.MAP_KIT,
 });
 
 async function getCoordsForAddress(address) {
