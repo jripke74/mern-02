@@ -1,7 +1,8 @@
 const AppleMaps = require("apple-maps-server-sdk").default;
 
 const HttpError = require("../models/http-error");
-const { appleMapKitKey } = require("../secrets/authKeys");
+// const { appleMapKitKey } = require("../secrets/authKeys");
+console.log(process.env.MAP_KIT);
 
 const appleMaps = new AppleMaps({
   authorizationToken: process.env.MAP_KIT,
